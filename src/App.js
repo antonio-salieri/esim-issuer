@@ -12,10 +12,15 @@ const issueNFT = async (identifier) => {
   
   const account = await client.client.getAccount(client.sender);
   console.info('account', account);
+  console.info('chain id', await client.client.getChainId());
   
   console.info('uuid', uuidv4());
 
   const contract = cw721.use(contractAddress);
+
+  await contract.mint(identifier, )
+
+  console.info('nftInfo', await contract.nftInfo(identifier));
 }
 
 function App() {
@@ -53,9 +58,9 @@ function App() {
               <th>Action</th>
             </tr>
           </thead>
-          <tbod>
+          <tbody>
             {itemRows}
-          </tbod>
+          </tbody>
         </table>
         {}
       </div>
