@@ -1,7 +1,7 @@
 import './App.css';
 
 import { UseOptions, CW721, musselnetOptions as netOptions } from './cosmwasm';
-import { contractAddress, walletMnemonic } from './config';
+import { contractAddress, walletMnemonic, nftOwner } from './config';
 import { v4 as uuidv4 } from 'uuid';
 
 const issueNFT = async (identifier) => {
@@ -14,12 +14,10 @@ const issueNFT = async (identifier) => {
   console.info('account', account);
   console.info('chain id', await client.client.getChainId());
   
-  console.info('uuid', uuidv4());
-
   const contract = cw721.use(contractAddress);
 
-  await contract.mint(identifier, )
-
+  await contract.mint(identifier, nftOwner, "dummy profile")
+  console.info('issued nft!')
   console.info('nftInfo', await contract.nftInfo(identifier));
 }
 
@@ -36,7 +34,7 @@ function App() {
     identifiers.push(uuidv4());
   }
 
-  const itemRows = identifiers.map((i) => <tr>
+  const itemRows = identifiers.map((i) => <tr key={i}>
     <td>{i}</td>
     <td>
       <button onClick={() => issueNFT(i)}>

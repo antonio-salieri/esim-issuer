@@ -78,15 +78,15 @@ export const UseOptions = (options: Options): Network => {
   return {fromMnemonic};
 }
 
-interface Balances {
-  readonly address: string
-  readonly amount: string  // decimal as string
-}
+// interface Balances {
+//   readonly address: string
+//   readonly amount: string  // decimal as string
+// }
 
-interface MintInfo {
-  readonly minter: string
-  readonly cap?: string // decimal as string
-}
+// interface MintInfo {
+//   readonly minter: string
+//   readonly cap?: string // decimal as string
+// }
 
 interface AllowanceResponse {
   readonly allowance: string;  // integer as string
@@ -109,51 +109,51 @@ interface AllAccountsResponse {
 }
 
 
-interface CW20Instance {
-  readonly contractAddress: string
+// interface CW20Instance {
+//   readonly contractAddress: string
 
-  // queries
-  balance: (address?: string) => Promise<string>
-  allowance: (owner: string, spender: string) => Promise<AllowanceResponse>
-  allAllowances: (owner: string, startAfter?: string, limit?: number) => Promise<AllAllowancesResponse>
-  allAccounts: (startAfter?: string, limit?: number) => Promise<readonly string[]>
-  tokenInfo: () => Promise<any>
-  minter: () => Promise<any>
+//   // queries
+//   balance: (address?: string) => Promise<string>
+//   allowance: (owner: string, spender: string) => Promise<AllowanceResponse>
+//   allAllowances: (owner: string, startAfter?: string, limit?: number) => Promise<AllAllowancesResponse>
+//   allAccounts: (startAfter?: string, limit?: number) => Promise<readonly string[]>
+//   tokenInfo: () => Promise<any>
+//   minter: () => Promise<any>
 
-  // actions
-  mint: (recipient: string, amount: string) => Promise<string>
-  transfer: (recipient: string, amount: string) => Promise<string>
-  burn: (amount: string) => Promise<string>
-  increaseAllowance: (recipient: string, amount: string) => Promise<string>
-  decreaseAllowance: (recipient: string, amount: string) => Promise<string>
-  transferFrom: (owner: string, recipient: string, amount: string) => Promise<string>
-}
+//   // actions
+//   mint: (recipient: string, amount: string) => Promise<string>
+//   transfer: (recipient: string, amount: string) => Promise<string>
+//   burn: (amount: string) => Promise<string>
+//   increaseAllowance: (recipient: string, amount: string) => Promise<string>
+//   decreaseAllowance: (recipient: string, amount: string) => Promise<string>
+//   transferFrom: (owner: string, recipient: string, amount: string) => Promise<string>
+// }
 
 type TokenId = string
 
-interface MintInfo {
-  readonly minter: string
-  readonly cap?: string // decimal as string
-}
+// interface MintInfo {
+//   readonly minter: string
+//   readonly cap?: string // decimal as string
+// }
 
-interface ContractInfo {
-  readonly name: string
-  readonly symbol: string
-}
+// interface ContractInfo {
+//   readonly name: string
+//   readonly symbol: string
+// }
 
-interface InitMsg {
-  readonly name: string
-  readonly symbol: string
-  readonly minter: string
-}
-// Better to use this interface?
-interface MintMsg {
-  readonly token_id: TokenId
-  readonly owner: string
-  readonly name: string
-  readonly description?: string
-  readonly image?: string
-}
+// interface InitMsg {
+//   readonly name: string
+//   readonly symbol: string
+//   readonly minter: string
+// }
+// // Better to use this interface?
+// interface MintMsg {
+//   readonly token_id: TokenId
+//   readonly owner: string
+//   readonly name: string
+//   readonly description?: string
+//   readonly image?: string
+// }
 
 type Expiration = { readonly at_height: number } | { readonly at_time: number } | { readonly never: {} };
 
@@ -280,8 +280,8 @@ export const CW721 = (client: CW20Client): CW721Contract => {
         };
     */
     // mints tokens, returns ?
-    const mint = async (token_id: TokenId, owner: string, name: string, level: number, description?: string, image?: string): Promise<string> => {
-      const result = await client.client.execute(client.sender, contractAddress, { mint: { token_id, owner, name, level, description, image } });
+    const mint = async (token_id: TokenId, owner: string, esim_profile: string): Promise<string> => {
+      const result = await client.client.execute(client.sender, contractAddress, { mint: { token_id, owner, esim_profile } });
       return result.transactionHash;
     }
 
