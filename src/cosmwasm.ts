@@ -34,18 +34,11 @@ export const musselnetOptions: Options = {
   httpUrl: 'https://rpc.musselnet.cosmwasm.com',
   networkId: 'musselnet-3',
   feeToken: 'umayo',
-  gasPrice: GasPrice.fromString("1umayo"),
+  gasPrice: GasPrice.fromString("0.01umayo"),
   bech32prefix: 'wasm',
   faucetUrl: 'https://faucet.musselnet.cosmwasm.com/credit',
   hdPath: makeCosmoshubPath(0),
-  gasLimits: {
-    upload: 1500000,
-    init: 500000,
-    migrate: 1200000,
-    exec: 1200000,
-    send: 1200000,
-    changeAdmin: 80000,
-  },
+  gasLimits: {},
 }
 
 interface Network {
