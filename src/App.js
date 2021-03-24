@@ -73,7 +73,8 @@ class App extends Component {
   }
 
   itemRows() {
-    return this.state.identifiers.map((i) => <tr key={i.identifier}>
+    return this.state.identifiers.map((i, idx) => <tr key={i.identifier}>
+      <td>{idx}</td>
       <td>{i.identifier}</td>
       <td><textarea defaultValue={i.esimProfile}></textarea></td>
       <td>
@@ -95,6 +96,7 @@ class App extends Component {
           <table>
             <thead>
               <tr>
+                <th>#</th>
                 <th>Identifier</th>
                 <th>eSIM profile</th>
                 <th>Action</th>
