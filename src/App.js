@@ -51,7 +51,7 @@ class App extends Component {
       this.cw721 = CW721(this.client);
       this.contract = this.cw721.use(contractAddress);
   
-      this.contract.allTokens().then(tokens => {
+      this.contract.allTokens('0', 10000).then(tokens => {
         this.setState({...this.state, issuedTokens: tokens.tokens});
         console.info('exisiting tokens', tokens);
       });
